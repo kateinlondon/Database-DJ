@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>{{ playlist.name }}</h2>
+  <p>{{ playlist.description }}</p>
+
+  <h3>Songs in this Playlist:</h3>
+  {% if playlist.songs %}
+    <ul>
+      {% for song in playlist.songs %}
+        <li>{{ song.title }} by {{ song.artist }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No songs added yet.</p>
+  {% endif %}
+
+  <a href="{{ url_for('add_song_to_playlist', playlist_id=playlist.id) }}">Add Song to Playlist</a>
+  <br>
+  <a href="{{ url_for('show_playlists') }}">Back to Playlists</a>
+{% endblock %}
