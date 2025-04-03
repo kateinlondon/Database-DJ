@@ -1,0 +1,21 @@
+<!-- templates/playlist.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>All Playlists</h2>
+
+<ul>
+  {% for playlist in playlists %}
+    <li>
+      <strong>{{ playlist.name }}</strong> - {{ playlist.description }}
+      <ul>
+        {% for ps in playlist.playlist_songs %}
+          <li>{{ ps.song.title }} by {{ ps.song.artist }}</li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% endfor %}
+</ul>
+
+<a href="/playlists/add">Add a new playlist</a>
+{% endblock %}

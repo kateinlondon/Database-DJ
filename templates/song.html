@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% if songs %}
+    <h2>All Songs</h2>
+    <ul>
+      {% for song in songs %}
+        <li>{{ song.title }} by {{ song.artist }}</li>
+      {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('add_song') }}">Add New Song</a><br>
+    <a href="{{ url_for('homepage') }}">Back to Home</a>
+
+  {% elif form %}
+    <h2>Add a New Song</h2>
+    <form method="POST">
+      {{ form.hidden_tag() }}
+      <p>{{ form.title.label }}<br>{{ form.title }}</p>
+      <p>{{ form.artist.label }}<br>{{ form.artist }}</p>
+      <p><button type="submit">Add Song</button></p>
+    </form>
+    <a href="{{ url_for('show_songs') }}">Cancel</a>
+  {% endif %}
+{% endblock %}
